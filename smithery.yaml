@@ -1,0 +1,33 @@
+# Smithery configuration for Google Keep
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_keep
+
+name: keep-mcp
+displayName: "Google Keep"
+description: >
+  MCP do Google Keep, leia e edite suas notas, listas, labels e colaboradores. Conecta com email + master token do Google (não há API oficial; usamos a API privada do app Android via master token, como o gkeepapi). Suporta múltiplas contas Google. Servidor stateless rodando em Cloudflare Workers; credenciais ficam só na WCA da plataforma. Por padrão só gere notas marcadas com a label 'keep-mcp' (passe unsafe=true pra agir sobre qualquer nota).
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/keep-mcp
+repository: https://github.com/mcp-dir/keep-mcp
+
+tags:
+  - keep
+  - brazil
+  - horizontal
+  - read-write
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_keep
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_keep/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.

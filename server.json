@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.mcp-dir/keep-mcp",
+  "title": "Google Keep",
+  "description": "Google Keep MCP, read and edit your notes, lists, labels and collaborators. Connect with your Google",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/mcp-dir/keep-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.mcp.ai/p_keep"
+    }
+  ]
+}
